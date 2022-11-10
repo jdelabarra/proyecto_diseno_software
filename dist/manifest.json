@@ -1,0 +1,24 @@
+{   
+    "name": "REDC",
+    "description": "Extension para hacer que webcursos funcione.",
+    "version": "0.1.0",
+    "manifest_version": 2,
+    "options_page":"./options.html",
+    "browser_action":{
+        "default_popup": "./popup.html"
+    },
+    "background": {
+        "scripts": ["./background.js"]
+    },
+    "content_scripts": [
+        {
+        "matches":["https://webc.uai.cl/*"],
+        "css":["./loadingscreen.css"]
+    }
+    ],
+    "permissions": [
+        "storage", 
+        "tabs", 
+        "https://webc.uai.cl/*", 
+        "https://intranet.uai.cl/*"]
+}

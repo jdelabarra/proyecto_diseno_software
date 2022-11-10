@@ -1,48 +1,64 @@
-
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyPlugin = require("copy-webpack-plugin");
+const CopyPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 
 module.exports = {
   entry: {
-    options: "./components/options.jsx",
+    options: './src/options.jsx',
+    background: './src/background.js',
   },
-
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
   },
-
   module: {
-    rules: [{
-      test: /\.js|\.jsx$/,
-      exclude: /node_modules/,
-      use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
+    rules: [
+      {
+        test: /\.(js|\jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
         }
+      },
+      {
+        test: /\.(sass|scss|css)$/,
+        exclude: /node_modules/,
+        include: path.resolve(__dirname, 'src/loadingscreen.css'), 
+        use: [
+          'style-loader',
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+                minimize: true,
+                sourceMap: true
+            }
+          },
+          {
+              loader: "sass-loader"
+          }
+        ],
+        sideEffects: true,
       }
-    },
-    {
-      test: /\.css$/,
-      use: [
-        'style-loader',
-        'css-loader'
-      ]
-    }
     ],
   },
-
-  plugins: [new HtmlWebpackPlugin({
-    template: './components/options.html',
-    filename : 'options.html',
-  }),
-  new CopyPlugin({
-    patterns: [
-      { from: "public"}, 
-    ],
-  }),
-],
-
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/options.html',
+      filename : 'options.html'
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: "public"}
+      ],
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'loadingscreen.css'
+    }),
+  ],
 };
