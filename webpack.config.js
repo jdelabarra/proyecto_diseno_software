@@ -2,11 +2,10 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
+var ReactDOM = require('react-dom');
 
 module.exports = {
   entry: {
-    options: './src/options.jsx',
     background: './src/background.js',
   },
   output: {
@@ -61,4 +60,11 @@ module.exports = {
       filename: 'loadingscreen.css'
     }),
   ],
+  externals: {
+    //don't bundle the 'react' npm package with our bundle.js
+    //but get it from a global 'React' variable
+    'react': 'React',
+    'react-dom': 'ReactDOM'
+
+  }
 };

@@ -17,8 +17,12 @@
     }
     ],
     "permissions": [
+        "browser",
+        "webRequest",
         "storage", 
-        "tabs", 
+        "tabs",
+        "activeTab",
         "https://webc.uai.cl/*", 
-        "https://intranet.uai.cl/*"]
+        "https://intranet.uai.cl/*"
+    ]
 }

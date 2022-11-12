@@ -16,7 +16,8 @@ html{
 }
 body{
     margin: 0;
-    padding-top: 4em;
+    padding-top: 6em;
+    padding-bottom: 6em;
     background-color: #070109;
 }
 
@@ -36,10 +37,6 @@ section, summary, time, mark, audio, input, video {
     background-color: none;
 }
 
-div{
-    margin-bottom: 2em;
-} 
-
 h1, h2 {
     padding-top: 0.5em;
     font-size: 5em;
@@ -50,7 +47,10 @@ h1, h2 {
 }
 
 p {
-    font-size: 1em;
+    font-size: 1.5em;
+    text-align: left;
+    margin-top: 0.9em;
+    padding-left: 10px;
 } 
 
 label{
@@ -61,24 +61,53 @@ label{
     transition: 0.2s;
     border: none;
     border-radius: 5px;
+    margin-bottom: 2em;
+    overflow: hidden;
 }   
 input{
-    padding-top: 0.5em;
-    padding-left: 0em;
+    margin: 0.4em;
     text-align: left;
     background-color: transparent;
     font-size: 1.5em;
     color: azure;
     transition: 0.2s;
     border: none;
+    font-size: 1.8em;
+    line-height: 1.5;
 } 
 input:focus, textarea:focus {
     outline: none !important;
     border: none;
     box-shadow: none;
     border-bottom: 4px solid;
-    border-color: blueviolet;
-  }
+    border-color: #8c17c2;
+}
+
+input[type="checkbox"], input[type="checkbox"]:focus {
+    cursor: default;
+    background-color: #5c5a5c;
+    outline-style: none;
+    border: 3px solid;
+    border-color: azure;
+    box-shadow: none;
+    font-size: 1.5em;
+    transform: scale(1.2);
+    transition: none;
+    margin: 1.2em 0.2em;
+}
+input[type="checkbox"]:checked {
+    background-color: #8c17c2;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    outline:0;
+
+    cursor: default;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;  
+}
 
 button{
     border-radius: 5px;
@@ -88,6 +117,7 @@ button{
     transition: 0.2s;
     border: none;
     margin: 2em 0;
+    overflow: hidden;
 }   
 
 button:hover {
@@ -98,6 +128,7 @@ button:hover {
 
   
 .fromdiv {
+    margin-bottom: 4em ;
     padding: 0 2em 0 2em;
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.2);
