@@ -16,7 +16,7 @@ chrome.tabs.onUpdated.addListener( tab => {
 
             //chrome.storage.sync.get('email', function (data) {console.log(data)});
             
-            if ( (current_tab_info.status == 'complete') && (current_tab_info.url.endsWith('/login/index.php')) ){
+            if ( (current_tab_info.url.endsWith('/login/index.php')) ){
                 chrome.storage.sync.get('email', function (data) {
                     chrome.storage.sync.get('password', function (data2) {
                         chrome.tabs.executeScript(
@@ -63,6 +63,7 @@ chrome.tabs.onUpdated.addListener( tab => {
                 } else {
                     console.log('ya tenemos los cursos')
                 }
+              
             });
 
             
@@ -72,7 +73,12 @@ chrome.tabs.onUpdated.addListener( tab => {
 
             
 
-/* 
+/*   
+            if ( !(current_tab_info.url.endsWith('/menu/')) ){
+                chrome.tabs.update({url: "https://webc.uai.cl/menu/"});
+                chrome.tabs.insertCSS(current_tab_info.id, {file: "./home.html"});
+            }
+
             //3
             //chrome.storage.sync.set({listacursos:null})
             //&& !chrome.storage.sync.get({listacursos})

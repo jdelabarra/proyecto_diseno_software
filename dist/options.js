@@ -1,10 +1,9 @@
 
-//const getCursos = require('./getcursos.js');
-
 const userInput = document.getElementById('email');
 const passInput = document.getElementById('password');
 const submit1 = document.getElementById('submitlogin');
 const cursosDisplay = document.getElementById('displaycursos');
+const eachCurso = document.getElementsByClassName('cadacurso');
 
 //console.log(submit1);
 
@@ -42,15 +41,13 @@ chrome.storage.sync.get('listaCursos', function (data) {
       divNodeRow.className = 'form-group row';
       var divNodeCheckbox = document.createElement('div');
       divNodeCheckbox.className = 'col-md-1 col-1';
-      divNodeCheckbox.id = 'displaycursos';
       var inputNode = document.createElement('input');
       inputNode.type = 'checkbox';
-      inputNode.className = 'form-check-input';
+      inputNode.className = 'form-check-input cadacurso';
       inputNode.id = 'checkbox-curso-'+String(i);
       divNodeCheckbox.appendChild(inputNode);
       var divNodeTitulo = document.createElement('div');
       divNodeTitulo.className = 'col-md-11 col-10';
-      divNodeTitulo.id = 'displaycursos';
       var pNodeTitulo = document.createElement('p');
       pNodeTitulo.innerHTML = String(data['listaCursos'][i][1]);
       divNodeTitulo.appendChild(pNodeTitulo);
@@ -60,9 +57,42 @@ chrome.storage.sync.get('listaCursos', function (data) {
       //INSERTAR HTML
       cursosDisplay.children[0].appendChild(divNodeMain)
   };
+    
+  Array.prototype.forEach.call (eachCurso, function (checkbox,index) {
+    checkbox.addEventListener('change', function() {
+      chrome.storage.sync.get('listaCursos', function (data) {
+        if ( (data != 'undefined') ){
+          data['listaCursos'][index][2] = checkbox.checked;
+          chrome.storage.sync.set({ listaCursos: data['listaCursos']});
+        };
+      });
+    });
+  });
   }
 });
 
+//buscar los valores de checkbox y mostrarlos
+chrome.storage.sync.get('listaCursos', function (data) {
+  if ( (data != 'undefined') ){
+    for(var i = 0; i < data['listaCursos'].length-1; i++){
+      eachCurso[i].checked =  data['listaCursos'][i][2];
+      //console.log(i, eachCurso[i].checked, data['listaCursos'][i][2] );
+    };
+  };
+});
+
+
+/* 
+
+    chrome.storage.sync.get('listaCursos', function (data) {
+      if ( (data != 'undefined') ){
+        data['listaCursos'][index][2] = checkbox.checked;
+        chrome.storage.sync.set({ listaCursos: data['listaCursos']});
+      };
+    });
+
+
+save before domingo
 
 chrome.storage.sync.get('listaCursos', function (data) {
   if ( (data != 'undefined') ){
@@ -80,23 +110,6 @@ chrome.storage.sync.get('listaCursos', function (data) {
   }
 });
 
-
-
-/* 
-
-chrome.storage.sync.get('listaCursos', function (data) {
-  if ( (data != 'undefined') ){
-    for(var i = 0; i < data['listaCursos'].length; i++){
-      //console.log(data['listaCursos'][i][0]);
-      cursosCheck[i] = document.getElementById('checkbox-curso-'+String(i));
-      cursosCheck[i].value = data['listaCursos'][i][2];
-      cursosCheck[i].addEventListener("click", function(){ 
-        data['listaCursos'][i][2] = cursosCheck[i].value;
-        chrome.storage.sync.set({ listaCursos: data['listaCursos']}); 
-      });
-  };
-  }
-});
 
 
 */ 
