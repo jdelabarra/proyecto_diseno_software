@@ -74,6 +74,7 @@ chrome.storage.sync.get('listaCursos', function (data) {
 //buscar los valores de checkbox y mostrarlos
 chrome.storage.sync.get('listaCursos', function (data) {
   if ( (data != 'undefined') ){
+    console.log(data)
     for(var i = 0; i < data['listaCursos'].length-1; i++){
       eachCurso[i].checked =  data['listaCursos'][i][2];
       //console.log(i, eachCurso[i].checked, data['listaCursos'][i][2] );

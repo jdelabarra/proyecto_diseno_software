@@ -13,7 +13,8 @@
     "content_scripts": [
         {
         "matches":["https://webc.uai.cl/*"],
-        "css":["./loadingscreen.css"]
+        "css":["./loadingscreen.css"],
+        "js": ["./jquery-3.6.1.min.js"]
     }
     ],
     "permissions": [

@@ -51,6 +51,10 @@ module.exports = {
       template: './src/options.html',
       filename : 'options.html'
     }),
+    new HtmlWebpackPlugin({
+      template: './src/home.html',
+      filename : 'home.html'
+    }),
     new CopyPlugin({
       patterns: [
         { from: "public"}
