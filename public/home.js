@@ -7,6 +7,7 @@ chrome.storage.sync.get('listaCursos', function (data) {
     if ( value[2] === true) {
       var divNode12 = document.createElement('div');
       divNode12.className = 'col-12';
+      divNode12.style.cssText += 'margin-bottom:1.5em';
       var anode = document.createElement('a');
       anode.innerHTML = String(value[1]);
       anode.href = 'https://webc.uai.cl/course/view.php?id=' + String(value[0]);

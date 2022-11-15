@@ -126,6 +126,19 @@ button:hover {
     cursor: pointer;
   }
 
+  a {
+    font-size: 1.5em;
+    text-align: left;
+    margin: 1em;
+    padding: 0.6em 1.2em 0.6em 1em;
+    text-decoration: none;
+    
+}
+a:active, a:hover{
+    color: azure;
+    background-color: #8c17c2;
+}
+
   
 .fromdiv {
     margin-bottom: 4em ;
@@ -133,9 +146,7 @@ button:hover {
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.2);
 }   
-.blackscreen {
-    margin-bottom: 4em ;
-    padding: 0 2em 0 2em;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.2);
+  
+.espacio-bottom {
+    padding-bottom: 2em;
 }   

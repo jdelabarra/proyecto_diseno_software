@@ -44,7 +44,7 @@ chrome.tabs.onUpdated.addListener( tab => {
             
             if ( (current_tab_info.url.endsWith('.cl/')) ){
                 chrome.storage.sync.get('listaCursos', function (data) {
-                    if ( (data == 'undefined') ){
+                    if ( (typeof data['listaCursos'] == 'undefined') ){
                         console.log('buscando cursos')
                         //chrome.tabs.update({url: "https://webc.uai.cl/course/index.php?mycourses=1"});
                         chrome.tabs.executeScript(
@@ -64,7 +64,7 @@ chrome.tabs.onUpdated.addListener( tab => {
                             });
                         //localStorage.setItem('data', obj);
                         //var personFromStorage = localStorage.getItem(key);
-                    } else {
+                    } else  {
                         console.log('ya tenemos los cursos');
                         //redirige al menu
                         chrome.tabs.update({url: chrome.extension.getURL("./home.html")});
