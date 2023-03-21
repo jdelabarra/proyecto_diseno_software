@@ -68,8 +68,15 @@ chrome.tabs.onUpdated.addListener( tab => {
                         console.log('ya tenemos los cursos');
                         //redirige al menu
                         chrome.tabs.update({url: chrome.extension.getURL("./home.html")});
+                        //document.getElementsByTagName('body')[0].replaceWith('<body>asdas</body>')
                     }
                 });
+            }
+            if ( (/course/.test(current_tab_info.url)) ){
+                //console.log(current_tab_info.url.slice(-4))
+                //document.getElementsByClassName('topics')[0]
+                chrome.storage.sync.set({ listaCursos: obj });
+                chrome.tabs.executeScript( current_tab_info.id, {code: `document.getElementsByTagName('body')[0].replaceWith('<body>asdas</body>')`});
             }
         }
 
